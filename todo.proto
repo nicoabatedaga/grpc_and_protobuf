@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package todo;
+
+option go_package = "protos/todo;todo";
+
+service TodoService {
+  rpc AddTask (Task) returns (TaskResponse);
+  rpc ListTasks (Empty) returns (Tasks);
+  rpc DeleteTask (TaskId) returns (TaskResponse);
+}
+
+message Task {
+  string id = 1;
+  string description = 2;
+}
+
+message TaskId {
+  string id = 1;
+}
+
+message TaskResponse {
+  string message = 1;
+}
+
+message Tasks {
+  repeated Task tasks = 1;
+}
+
+message Empty {}
